@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "728127368641",
+    "firebase_url": "https://riskonauth.firebaseio.com",
+    "project_id": "riskonauth",
+    "storage_bucket": "riskonauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728127368641:android:44230f049992db43785340",
+        "android_client_info": {
+          "package_name": "com.uc.riskon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728127368641-k7382c7tfgnkvmda5d8ticun1f07sqjk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.uc.riskon",
+            "certificate_hash": "f124e5bf8f60dff0b4b91508130fa9a6999f35cd"
+          }
+        },
+        {
+          "client_id": "728127368641-8f0bcqeocjqf3r318590ig0m340mu9ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABaJ3-YcsXh8mhp9_9hiZA7_r9uqWnJFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728127368641-8f0bcqeocjqf3r318590ig0m340mu9ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

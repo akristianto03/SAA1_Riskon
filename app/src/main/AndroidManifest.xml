@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.uc.riskon">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".adapter.StudentAdapter"></activity>
+        <activity android:name=".StudentData" />
+        <activity android:name=".DetailLecActivity" />
+        <activity android:name=".adapter.LecturerAdapter" />
+        <activity android:name=".LecturerData" />
+        <activity android:name=".LoadingActivity" />
+        <activity android:name=".StarterActivity" />
+        <activity android:name=".AddCourseActivity" />
+        <activity android:name=".AddLectActivity" />
+        <activity android:name=".LogActivity" />
+        <activity android:name=".RegActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
