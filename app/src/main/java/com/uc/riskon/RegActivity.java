@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class RegActivity extends AppCompatActivity {
     Toolbar toolbarReg;
     TextView titleReg;
 
+    Dialog dialog;
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
     private FirebaseAuth fAuth;
@@ -67,6 +70,8 @@ public class RegActivity extends AppCompatActivity {
         btnReg = findViewById(R.id.btnReg);
         toolbarReg = findViewById(R.id.toolbarRegister);
         titleReg = findViewById(R.id.titleReg);
+
+        dialog = LoadingActivity.loadingDialog(RegActivity.this);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("Student");
@@ -157,6 +162,10 @@ public class RegActivity extends AppCompatActivity {
                         return;
                     }
 
+                    if(!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(pass)&&pass.length()>=6){
+                        dialog.show();
+                    }
+
                     fAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(RegActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -167,20 +176,13 @@ public class RegActivity extends AppCompatActivity {
                                 reference.child(id).setValue(student).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        final LoadingActivity loadingDialog = new LoadingActivity(RegActivity.this);
-                                        loadingDialog.startLoading();
-                                        Handler handler = new Handler();
-                                        handler.postDelayed(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                loadingDialog.stopLoading();
-                                                Toast.makeText(RegActivity.this,"Add Student Successfuly",Toast.LENGTH_SHORT).show();
-                                            }
-                                        },3000);
+                                     dialog.cancel();
+                                     Toast.makeText(RegActivity.this,"Add Student Successfuly",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 fAuth.signOut();
                             }else{
+                                dialog.cancel();
                                 try {
                                     throw task.getException();
                                 }catch (FirebaseAuthInvalidCredentialsException malFormed){
@@ -190,16 +192,6 @@ public class RegActivity extends AppCompatActivity {
                                 }catch (Exception e){
                                     Toast.makeText(RegActivity.this,"Register failed!",Toast.LENGTH_SHORT).show();
                                 }
-
-                                final LoadingActivity loadingDialog = new LoadingActivity(RegActivity.this);
-                                loadingDialog.startLoading();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        loadingDialog.stopLoading();
-                                    }
-                                },2000);
 
                             }
                         }

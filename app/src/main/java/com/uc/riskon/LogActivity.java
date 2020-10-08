@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ public class LogActivity extends AppCompatActivity {
     Button btnLog;
     String email, pass;
 
+    Dialog dialog;
+
     FirebaseAuth fAuth;
 
     @Override
@@ -44,6 +47,8 @@ public class LogActivity extends AppCompatActivity {
         logPass = findViewById(R.id.logPass);
         btnLog = findViewById(R.id.btnLog);
         fAuth = FirebaseAuth.getInstance();
+
+        dialog = LoadingActivity.loadingDialog(LogActivity.this);
 
         setSupportActionBar(toolbarLogin);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,28 +92,19 @@ public class LogActivity extends AppCompatActivity {
         btnLog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.show();
 
                 fAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        final Intent in = new Intent(LogActivity.this,MainActivity.class);
+                        Intent in = new Intent(LogActivity.this,MainActivity.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        final ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
-
-                        final LoadingActivity loadingDialog = new LoadingActivity(LogActivity.this);
-                        loadingDialog.startLoading();
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                loadingDialog.stopLoading();
-                                Toast.makeText(LogActivity.this,"Logged in Successfuly",Toast.LENGTH_SHORT).show();
-                                startActivity(in,options.toBundle());
-                                finish();
-                            }
-                        },3000);
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
+                        dialog.cancel();
+                        Toast.makeText(LogActivity.this,"Logged in Successfuly",Toast.LENGTH_SHORT).show();
+                        startActivity(in,options.toBundle());
+                        finish();
                     }
                 });
 
@@ -123,7 +119,7 @@ public class LogActivity extends AppCompatActivity {
         int id = item.getItemId();
         if(id == android.R.id.home){
             Intent intent;
-            intent = new Intent(LogActivity.this, MainActivity.class);
+            intent = new Intent(LogActivity.this, StarterActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
             startActivity(intent, options.toBundle());
@@ -137,7 +133,7 @@ public class LogActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        intent = new Intent(LogActivity.this, MainActivity.class);
+        intent = new Intent(LogActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
         startActivity(intent, options.toBundle());

@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class AddLectActivity extends AppCompatActivity {
     Button btnAddLec;
     String name="",expert="",gender="",action="";
 
+    Dialog dialog;
+
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
 
@@ -55,6 +58,8 @@ public class AddLectActivity extends AppCompatActivity {
         rgGenLec = findViewById(R.id.rgGenLec);
         toolbarAddLec = findViewById(R.id.toolbarAddLec);
         btnAddLec = findViewById(R.id.btnAddLec);
+
+        dialog = LoadingActivity.loadingDialog(AddLectActivity.this);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         reference = firebaseDatabase.getReference("Lecturer");
@@ -121,38 +126,21 @@ public class AddLectActivity extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onClick(View v) {
+                    dialog.show();
                     String id = reference.child("Lecturer").push().getKey();
 
                     Lecturer lecturer = new Lecturer(id, name, gender, expert);
                     reference.child(id).setValue(lecturer).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            final LoadingActivity loadingDialog = new LoadingActivity(AddLectActivity.this);
-                            loadingDialog.startLoading();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    loadingDialog.stopLoading();
-                                    Toast.makeText(AddLectActivity.this,"Add Lecture Successfuly",Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            },3000);
+                            dialog.cancel();
+                            Toast.makeText(AddLectActivity.this,"Add Lecture Successfuly",Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            final LoadingActivity loadingDialog = new LoadingActivity(AddLectActivity.this);
-                            loadingDialog.startLoading();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    loadingDialog.stopLoading();
-                                    Toast.makeText(AddLectActivity.this,"Failed",Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            },2000);
+                            dialog.cancel();
+                            Toast.makeText(AddLectActivity.this,"Failed",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -173,6 +161,7 @@ public class AddLectActivity extends AppCompatActivity {
             btnAddLec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    dialog.show();
                     Map<String,Object> params = new HashMap<>();
                     params.put("name", name);
                     params.put("expertise", expert);
@@ -182,21 +171,13 @@ public class AddLectActivity extends AppCompatActivity {
                         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         public void onSuccess(Void aVoid) {
-                            final Intent in = new Intent(AddLectActivity.this,LecturerData.class);
+                            Intent in = new Intent(AddLectActivity.this,LecturerData.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            final ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
 
-                            final LoadingActivity loadingDialog = new LoadingActivity(AddLectActivity.this);
-                            loadingDialog.startLoading();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    loadingDialog.startLoading();
-                                    Toast.makeText(AddLectActivity.this,"Edit Lecture Successfuly",Toast.LENGTH_SHORT).show();
-                                    startActivity(in,options.toBundle());
-                                }
-                            },3000);
+                            dialog.cancel();
+                            Toast.makeText(AddLectActivity.this,"Edit Lecture Successfuly",Toast.LENGTH_SHORT).show();
+                            startActivity(in,options.toBundle());
                         }
                     });
                 }

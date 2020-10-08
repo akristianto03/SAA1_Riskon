@@ -41,6 +41,7 @@ public class DetailLecActivity extends AppCompatActivity {
     TextView detailLecName, detailLecGen, detailLecExpert;
     Toolbar toolbarLecDetail;
     ImageView btnLecEdit, btnLecDelete;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class DetailLecActivity extends AppCompatActivity {
         toolbarLecDetail = findViewById(R.id.toolbarLecDetail);
         btnLecEdit = findViewById(R.id.btnLecEdit);
         btnLecDelete = findViewById(R.id.btnLecDelete);
+
+        dialog = LoadingActivity.loadingDialog(DetailLecActivity.this);
 
         dbLecturer = FirebaseDatabase.getInstance().getReference("Lecturer");
 
@@ -80,6 +83,7 @@ public class DetailLecActivity extends AppCompatActivity {
         btnLecDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.show();
                 v.startAnimation(klik);
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
@@ -90,22 +94,12 @@ public class DetailLecActivity extends AppCompatActivity {
                                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                                 @Override
                                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
-                                    final Intent in = new Intent(DetailLecActivity.this, LecturerData.class);
+                                    Intent in = new Intent(DetailLecActivity.this, LecturerData.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     Toast.makeText(DetailLecActivity.this,"Delete Success",Toast.LENGTH_SHORT).show();
-                                    final ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
-
-                                    final LoadingActivity loadingDialog = new LoadingActivity(DetailLecActivity.this);
-                                    loadingDialog.startLoading();
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            loadingDialog.stopLoading();
-                                            startActivity(in,options.toBundle());
-                                            finish();
-                                        }
-                                    },3000);
+                                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
+                                    startActivity(in,options.toBundle());
+                                    finish();
 
                                 }
                             });

@@ -82,7 +82,7 @@ public class StudentData extends AppCompatActivity {
         int id = item.getItemId();
         if(id == android.R.id.home){
             Intent intent;
-            intent = new Intent(StudentData.this, AddLectActivity.class);
+            intent = new Intent(StudentData.this, RegActivity.class);
             intent.putExtra("action", "add");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StudentData.this);
