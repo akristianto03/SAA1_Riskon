@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class StarterActivity extends AppCompatActivity {
 
@@ -79,6 +80,26 @@ public class StarterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public boolean doubleBackToExitPressedOnce = false;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.doubleBackToExitPressedOnce = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
+            startActivity(a);
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(StarterActivity.this, "Press back again to close the apps!", Toast.LENGTH_SHORT).show();
     }
 
 }

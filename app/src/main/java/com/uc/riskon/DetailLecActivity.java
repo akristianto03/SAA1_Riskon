@@ -41,7 +41,7 @@ public class DetailLecActivity extends AppCompatActivity {
     TextView detailLecName, detailLecGen, detailLecExpert;
     Toolbar toolbarLecDetail;
     ImageView btnLecEdit, btnLecDelete;
-    Dialog dialog;
+    Dialog dialogLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class DetailLecActivity extends AppCompatActivity {
         btnLecEdit = findViewById(R.id.btnLecEdit);
         btnLecDelete = findViewById(R.id.btnLecDelete);
 
-        dialog = LoadingActivity.loadingDialog(DetailLecActivity.this);
+        dialogLoading = LoadingActivity.loadingDialog(DetailLecActivity.this);
 
         dbLecturer = FirebaseDatabase.getInstance().getReference("Lecturer");
 
@@ -83,19 +83,20 @@ public class DetailLecActivity extends AppCompatActivity {
         btnLecDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show();
                 v.startAnimation(klik);
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
+                                dialogLoading.show();
                                 dbLecturer.child(lecturer.getId()).removeValue(new DatabaseReference.CompletionListener() {
                                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                                 @Override
                                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
                                     Intent in = new Intent(DetailLecActivity.this, LecturerData.class);
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    dialogLoading.cancel();
                                     Toast.makeText(DetailLecActivity.this,"Delete Success",Toast.LENGTH_SHORT).show();
                                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
                                     startActivity(in,options.toBundle());

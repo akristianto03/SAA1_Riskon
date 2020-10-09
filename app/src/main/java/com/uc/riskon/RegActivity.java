@@ -38,6 +38,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uc.riskon.model.Student;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RegActivity extends AppCompatActivity {
 
     String email="",pass="",fname="",nim="",age="",address="",gender="",action="";
@@ -48,6 +51,8 @@ public class RegActivity extends AppCompatActivity {
     Button btnReg;
     Toolbar toolbarReg;
     TextView titleReg;
+
+    Student student;
 
     Dialog dialog;
 
@@ -203,8 +208,59 @@ public class RegActivity extends AppCompatActivity {
         }else{//editActivity
             titleReg.setText("EDIT");
             btnReg.setText("edit");
+            student = intent.getParcelableExtra("editDataStudent");
 
-            //code goes here
+            regFname.setText(student.getFname());
+            regEmail.setText(student.getEmail());
+            regPass.setText(student.getPass());
+            regNim.setText(student.getNim());
+            regAge.setText(student.getAge());
+            regAddress.setText(student.getAddress());
+            if(student.getGender().equalsIgnoreCase("Male")){
+                rgGen.check(R.id.regGenM);
+            }else{
+                rgGen.check(R.id.regGenF);
+            }
+
+            btnReg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show();
+                    Map<String,Object> params = new HashMap<>();
+                    params.put("fname", fname);
+                    params.put("address", address);
+                    params.put("age", age);
+                    params.put("email", email);
+                    params.put("gender", gender);
+                    params.put("nim", nim);
+                    params.put("pass", pass);
+
+                    reference.child(student.getId()).updateChildren(params).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            fAuth.signInWithEmailAndPassword(student.getEmail(),student.getPass()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    fAuth.getCurrentUser().updateEmail(email);
+                                    fAuth.getCurrentUser().updatePassword(pass);
+
+                                    fAuth.signOut();
+                                }
+                            });
+
+                            Intent in = new Intent(RegActivity.this,StudentData.class);
+                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+
+                            dialog.cancel();
+                            Toast.makeText(RegActivity.this,"Edit Student Successfuly",Toast.LENGTH_SHORT).show();
+                            startActivity(in,options.toBundle());
+                        }
+                    });
+                }
+            });
 
         }
     }
