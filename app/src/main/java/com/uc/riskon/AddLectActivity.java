@@ -135,6 +135,9 @@ public class AddLectActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             dialog.cancel();
                             Toast.makeText(AddLectActivity.this,"Add Lecture Successfuly",Toast.LENGTH_SHORT).show();
+                            lecName.setText("");
+                            lecExpert.setText("");
+                            rgGenLec.check(R.id.regGenM);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -203,6 +206,7 @@ public class AddLectActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
             startActivity(intent, options.toBundle());
+            finish();
 
             return true;
         }else if(id == android.R.id.home){
@@ -211,6 +215,7 @@ public class AddLectActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
             startActivity(intent,options.toBundle());
+            finish();
 
         }
         return super.onOptionsItemSelected(item);

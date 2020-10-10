@@ -98,13 +98,18 @@ public class LogActivity extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Intent in = new Intent(LogActivity.this,MainActivity.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
-                        dialog.cancel();
-                        Toast.makeText(LogActivity.this,"Logged in Successfuly",Toast.LENGTH_SHORT).show();
-                        startActivity(in,options.toBundle());
-                        finish();
+                        if (task.isSuccessful()){
+                            Intent in = new Intent(LogActivity.this,MainActivity.class);
+                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
+                            dialog.cancel();
+                            Toast.makeText(LogActivity.this,"Logged in Successfuly",Toast.LENGTH_SHORT).show();
+                            startActivity(in,options.toBundle());
+                            finish();
+                        }else{
+                            dialog.cancel();
+                            Toast.makeText(LogActivity.this, "Email Address and/or password is invalid", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

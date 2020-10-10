@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.uc.riskon.fragment.AccountFragment;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navlist);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CoursesFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ScheduleFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navlist =
@@ -48,4 +50,25 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public boolean doubleBackToExitPressedOnce = false;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.doubleBackToExitPressedOnce = false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
+            startActivity(a);
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(MainActivity.this, "Press back again to close the apps!", Toast.LENGTH_SHORT).show();
+    }
+
 }

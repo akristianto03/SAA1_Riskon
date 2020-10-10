@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -152,22 +153,20 @@ public class RegActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    if (TextUtils.isEmpty(email)){
-                        regEmail.setError("Email is Required!");
-                        return;
-                    }
-
-                    if(TextUtils.isEmpty(pass)){
-                        regPass.setError("Password is Required!");
-                        return;
-                    }
+//                    if (TextUtils.isEmpty(email)){
+//                        regEmail.setError("Email is Required!");
+//                        return;
+//                    }
+//
+//                    if(TextUtils.isEmpty(pass)){
+//                        regPass.setError("Password is Required!");
+//                        return;
+//                    }
 
                     if (pass.length()<6){
                         regPass.setError("Password must be at least 6 Characters!");
                         return;
-                    }
-
-                    if(!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(pass)&&pass.length()>=6){
+                    }else{
                         dialog.show();
                     }
 
@@ -181,8 +180,17 @@ public class RegActivity extends AppCompatActivity {
                                 reference.child(id).setValue(student).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                     dialog.cancel();
-                                     Toast.makeText(RegActivity.this,"Add Student Successfuly",Toast.LENGTH_SHORT).show();
+                                         dialog.cancel();
+                                         Toast.makeText(RegActivity.this,"Add Student Successfuly",Toast.LENGTH_SHORT).show();
+
+                                         regEmail.setText("");
+                                         regPass.setText("");
+                                         regFname.setText("");
+                                         regNim.setText("");
+                                         regAge.setText("");
+                                         regAddress.setText("");
+                                         rgGen.check(R.id.regGenM);
+
                                     }
                                 });
                                 fAuth.signOut();
@@ -191,7 +199,7 @@ public class RegActivity extends AppCompatActivity {
                                 try {
                                     throw task.getException();
                                 }catch (FirebaseAuthInvalidCredentialsException malFormed){
-                                    Toast.makeText(RegActivity.this,"Invalid email or password!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegActivity.this,"Invalid email!",Toast.LENGTH_SHORT).show();
                                 }catch (FirebaseAuthUserCollisionException existEmail){
                                     Toast.makeText(RegActivity.this,"Email already registered!",Toast.LENGTH_SHORT).show();
                                 }catch (Exception e){
@@ -210,9 +218,14 @@ public class RegActivity extends AppCompatActivity {
             btnReg.setText("edit");
             student = intent.getParcelableExtra("editDataStudent");
 
-            regFname.setText(student.getFname());
             regEmail.setText(student.getEmail());
             regPass.setText(student.getPass());
+            regEmail.setFocusable(false);
+            regEmail.setTextColor(Color.parseColor("#aaaaaa"));
+            regPass.setFocusable(false);
+            regPass.setTextColor(Color.parseColor("#aaaaaa"));
+
+            regFname.setText(student.getFname());
             regNim.setText(student.getNim());
             regAge.setText(student.getAge());
             regAddress.setText(student.getAddress());
@@ -225,30 +238,30 @@ public class RegActivity extends AppCompatActivity {
             btnReg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     dialog.show();
                     Map<String,Object> params = new HashMap<>();
                     params.put("fname", fname);
                     params.put("address", address);
                     params.put("age", age);
-                    params.put("email", email);
                     params.put("gender", gender);
                     params.put("nim", nim);
-                    params.put("pass", pass);
 
                     reference.child(student.getId()).updateChildren(params).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            fAuth.signInWithEmailAndPassword(student.getEmail(),student.getPass()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    fAuth.getCurrentUser().updateEmail(email);
-                                    fAuth.getCurrentUser().updatePassword(pass);
-
-                                    fAuth.signOut();
-                                }
-                            });
+                            //KARNA GAPAKE UPDATE EMAIL & PASSWORD//
+//                            fAuth.signInWithEmailAndPassword(student.getEmail(),student.getPass()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<AuthResult> task) {
+//                                    fAuth.getCurrentUser().updateEmail(email);
+//                                    fAuth.getCurrentUser().updatePassword(pass);
+//
+//                                    fAuth.signOut();
+//                                }
+//                            });
 
                             Intent in = new Intent(RegActivity.this,StudentData.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
