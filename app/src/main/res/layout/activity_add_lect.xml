@@ -23,7 +23,7 @@
         app:titleTextColor="#FFFFFF" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/titleLecturer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -49,7 +49,7 @@
         android:textColorHint="#C9C9C9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/titleLecturer" />
 
     <EditText
         android:id="@+id/lecExpert"

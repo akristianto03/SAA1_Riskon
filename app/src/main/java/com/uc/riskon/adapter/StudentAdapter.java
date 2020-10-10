@@ -27,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.uc.riskon.AddLectActivity;
-import com.uc.riskon.DetailLecActivity;
-import com.uc.riskon.LecturerData;
 import com.uc.riskon.LoadingActivity;
 import com.uc.riskon.R;
 import com.uc.riskon.RegActivity;
@@ -126,8 +123,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
                                         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                         holder.dialogLoading.cancel();
                                         Toast.makeText(context,"Delete Student Success",Toast.LENGTH_SHORT).show();
-                                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
-                                        context.startActivity(in,options.toBundle());
+//                                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
+                                        context.startActivity(in);
                                         ((Activity)context).finish();
 
                                     }
@@ -157,8 +154,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
                 in.putExtra("action","edit");
                 in.putExtra("editDataStudent", student);
                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
-                context.startActivity(in, options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
+                context.startActivity(in);
                 ((Activity)context).finish();
             }
         });

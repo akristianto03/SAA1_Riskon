@@ -3,7 +3,6 @@ package com.uc.riskon.fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
@@ -27,7 +26,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.uc.riskon.AddLectActivity;
 import com.uc.riskon.LoadingActivity;
 import com.uc.riskon.R;
 import com.uc.riskon.StarterActivity;
@@ -114,11 +112,11 @@ public class AccountFragment extends Fragment {
                                 fAuth.signOut(); //logout
                                 Intent intent = new Intent(getActivity(),StarterActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity());
+//                                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity());
 
                                 dialogLoading.cancel();
                                 Toast.makeText(getActivity(), "Sign Out", Toast.LENGTH_SHORT).show();
-                                startActivity(intent,options.toBundle());
+                                startActivity(intent);
                                 getActivity().finish();
                                 break;
                             case DialogInterface.BUTTON_NEGATIVE:

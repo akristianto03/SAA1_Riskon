@@ -32,14 +32,14 @@ public class SplashActivity extends AppCompatActivity {
                     Intent start = new Intent(SplashActivity.this, MainActivity.class);
                     Toast.makeText(SplashActivity.this, "Welcome Back!",Toast.LENGTH_SHORT).show();
                     start.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
-                    startActivity(start,options.toBundle());
+//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
+                    startActivity(start);
                     finish();
                 }else{
                     Intent start = new Intent(SplashActivity.this, StarterActivity.class);
                     start.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
-                    startActivity(start,options.toBundle());
+//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this);
+                    startActivity(start);
                     finish();
                 }
             }

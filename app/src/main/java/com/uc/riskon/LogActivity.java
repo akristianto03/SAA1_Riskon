@@ -9,10 +9,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -101,10 +99,10 @@ public class LogActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Intent in = new Intent(LogActivity.this,MainActivity.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
+//                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
                             dialog.cancel();
                             Toast.makeText(LogActivity.this,"Logged in Successfuly",Toast.LENGTH_SHORT).show();
-                            startActivity(in,options.toBundle());
+                            startActivity(in);
                             finish();
                         }else{
                             dialog.cancel();
@@ -126,8 +124,8 @@ public class LogActivity extends AppCompatActivity {
             Intent intent;
             intent = new Intent(LogActivity.this, StarterActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
+            startActivity(intent);
             finish();
             return true;
         }
@@ -140,8 +138,8 @@ public class LogActivity extends AppCompatActivity {
         Intent intent;
         intent = new Intent(LogActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
-        startActivity(intent, options.toBundle());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LogActivity.this);
+        startActivity(intent);
         finish();
     }
 

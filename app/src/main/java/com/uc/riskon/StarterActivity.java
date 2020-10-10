@@ -40,8 +40,8 @@ public class StarterActivity extends AppCompatActivity {
                 Intent intent = new Intent(StarterActivity.this, RegActivity.class);
                 intent.putExtra("action","add");
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
-                startActivity(intent,options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent);
                 finish();
             }
         });
@@ -55,8 +55,8 @@ public class StarterActivity extends AppCompatActivity {
                 Intent intent = new Intent(StarterActivity.this, AddLectActivity.class);
                 intent.putExtra("action","add");
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
-                startActivity(intent,options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent);
                 finish();
             }
         });
@@ -69,8 +69,8 @@ public class StarterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StarterActivity.this, AddCourseActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
-                startActivity(intent,options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent);
                 finish();
             }
         });
@@ -83,8 +83,8 @@ public class StarterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StarterActivity.this, LogActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
-                startActivity(intent,options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent);
                 finish();
             }
         });

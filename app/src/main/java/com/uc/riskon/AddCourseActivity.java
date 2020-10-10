@@ -180,8 +180,8 @@ public class AddCourseActivity extends AppCompatActivity implements AdapterView.
             Intent intent;
             intent = new Intent(AddCourseActivity.this, StarterActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
+            startActivity(intent);
             finish();
             return true;
         }
@@ -194,8 +194,8 @@ public class AddCourseActivity extends AppCompatActivity implements AdapterView.
         Intent intent;
         intent = new Intent(AddCourseActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
-        startActivity(intent, options.toBundle());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddCourseActivity.this);
+        startActivity(intent);
         finish();
     }
 }

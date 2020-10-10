@@ -98,8 +98,8 @@ public class LecturerData extends AppCompatActivity {
                 Lecturer lecturer = new Lecturer(id,nama,gender,expert);
                 intent.putExtra("dataLec", lecturer);
                 intent.putExtra("position", position);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
-                startActivity(intent, options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
+                startActivity(intent);
                 finish();
 
             }
@@ -115,8 +115,8 @@ public class LecturerData extends AppCompatActivity {
             intent = new Intent(LecturerData.this, AddLectActivity.class);
             intent.putExtra("action", "add");
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
+            startActivity(intent);
             finish();
             return true;
         }
@@ -130,8 +130,8 @@ public class LecturerData extends AppCompatActivity {
         intent = new Intent(LecturerData.this, AddLectActivity.class);
         intent.putExtra("action", "add");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
-        startActivity(intent, options.toBundle());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LecturerData.this);
+        startActivity(intent);
         finish();
     }
 

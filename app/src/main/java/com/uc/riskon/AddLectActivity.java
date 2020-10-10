@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -19,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -40,6 +40,7 @@ public class AddLectActivity extends AppCompatActivity {
     RadioButton rgGentext;
     Button btnAddLec;
     String name="",expert="",gender="",action="";
+    TextView titleLecturer;
 
     Dialog dialog;
 
@@ -58,6 +59,7 @@ public class AddLectActivity extends AppCompatActivity {
         rgGenLec = findViewById(R.id.rgGenLec);
         toolbarAddLec = findViewById(R.id.toolbarAddLec);
         btnAddLec = findViewById(R.id.btnAddLec);
+        titleLecturer = findViewById(R.id.titleLecturer);
 
         dialog = LoadingActivity.loadingDialog(AddLectActivity.this);
 
@@ -119,7 +121,7 @@ public class AddLectActivity extends AppCompatActivity {
         Intent intent = getIntent();
         action = intent.getStringExtra("action");
         if(action.equals("add")){
-            getSupportActionBar().setTitle("Add Lecturer");
+            titleLecturer.setText("Add Lecturer");
             btnAddLec.setText("Add Lecturer");
 
             btnAddLec.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +151,7 @@ public class AddLectActivity extends AppCompatActivity {
                 }
             });
         }else{ //editLecActivity
-            getSupportActionBar().setTitle("Edit Lecturer");
+            titleLecturer.setText("Edit Lecturer");
             lecturer = intent.getParcelableExtra("editDataLec");
 
             lecName.setText(lecturer.getName());
@@ -176,11 +178,11 @@ public class AddLectActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             Intent in = new Intent(AddLectActivity.this,LecturerData.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+//                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
 
                             dialog.cancel();
                             Toast.makeText(AddLectActivity.this,"Edit Lecture Successfuly",Toast.LENGTH_SHORT).show();
-                            startActivity(in,options.toBundle());
+                            startActivity(in);
                         }
                     });
                 }
@@ -204,19 +206,27 @@ public class AddLectActivity extends AppCompatActivity {
             Intent intent;
             intent = new Intent(AddLectActivity.this, LecturerData.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+            startActivity(intent);
             finish();
 
             return true;
         }else if(id == android.R.id.home){
-            Intent intent;
-            intent = new Intent(AddLectActivity.this,StarterActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
-            startActivity(intent,options.toBundle());
-            finish();
-
+            if(action.equals("add")){
+                Intent intent;
+                intent = new Intent(AddLectActivity.this,StarterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+                startActivity(intent);
+                finish();
+            }else{
+                Intent intent;
+                intent = new Intent(AddLectActivity.this,LecturerData.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+                startActivity(intent);
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -224,12 +234,21 @@ public class AddLectActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBackPressed() {
-        Intent intent;
-        intent = new Intent(AddLectActivity.this, StarterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
-        startActivity(intent, options.toBundle());
-        finish();
+        if(action.equals("add")){
+            Intent intent;
+            intent = new Intent(AddLectActivity.this,StarterActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent;
+            intent = new Intent(AddLectActivity.this,LecturerData.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
+            startActivity(intent);
+            finish();
+        }
     }
 
 

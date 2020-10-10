@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +32,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.uc.riskon.model.Student;
@@ -265,11 +262,11 @@ public class RegActivity extends AppCompatActivity {
 
                             Intent in = new Intent(RegActivity.this,StudentData.class);
                             in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+//                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
 
                             dialog.cancel();
                             Toast.makeText(RegActivity.this,"Edit Student Successfuly",Toast.LENGTH_SHORT).show();
-                            startActivity(in,options.toBundle());
+                            startActivity(in);
                         }
                     });
                 }
@@ -292,17 +289,26 @@ public class RegActivity extends AppCompatActivity {
             Intent intent;
             intent = new Intent(RegActivity.this, StudentData.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+            startActivity(intent);
             finish();
             return true;
         }else if(id == android.R.id.home){
-            Intent intent;
-            intent = new Intent(RegActivity.this,StarterActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
-            startActivity(intent,options.toBundle());
-            finish();
+            if(action.equals("add")){
+                Intent intent;
+                intent = new Intent(RegActivity.this,StarterActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+                startActivity(intent);
+                finish();
+            }else{
+                Intent intent;
+                intent = new Intent(RegActivity.this,StudentData.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+                startActivity(intent);
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -310,12 +316,21 @@ public class RegActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBackPressed() {
-        Intent intent;
-        intent = new Intent(RegActivity.this, StarterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
-        startActivity(intent, options.toBundle());
-        finish();
+        if(action.equals("add")){
+            Intent intent;
+            intent = new Intent(RegActivity.this,StarterActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent;
+            intent = new Intent(RegActivity.this,StudentData.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }

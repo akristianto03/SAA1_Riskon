@@ -13,7 +13,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -98,8 +97,8 @@ public class DetailLecActivity extends AppCompatActivity {
                                     in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     dialogLoading.cancel();
                                     Toast.makeText(DetailLecActivity.this,"Delete Success",Toast.LENGTH_SHORT).show();
-                                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
-                                    startActivity(in,options.toBundle());
+//                                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
+                                    startActivity(in);
                                     finish();
 
                                 }
@@ -133,8 +132,8 @@ public class DetailLecActivity extends AppCompatActivity {
                 in.putExtra("action","edit");
                 in.putExtra("editDataLec", lecturer);
                 in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
-                startActivity(in, options.toBundle());
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
+                startActivity(in);
                 finish();
             }
         });
@@ -148,8 +147,8 @@ public class DetailLecActivity extends AppCompatActivity {
             Intent intent;
             intent = new Intent(DetailLecActivity.this, LecturerData.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
-            startActivity(intent, options.toBundle());
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
+            startActivity(intent);
             finish();
             return true;
         }
@@ -162,8 +161,8 @@ public class DetailLecActivity extends AppCompatActivity {
         Intent intent;
         intent = new Intent(DetailLecActivity.this, LecturerData.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
-        startActivity(intent, options.toBundle());
+//        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(DetailLecActivity.this);
+        startActivity(intent);
         finish();
     }
 
