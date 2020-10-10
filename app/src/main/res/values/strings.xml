@@ -38,6 +38,238 @@
 
     </string-array>
 
+<!--    opsi end -->
+    <string-array name="jam_end0730">
+        <item>08:00:00</item>
+        <item>08:30:00</item>
+        <item>09:00:00</item>
+        <item>09:30:00</item>
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end0800">
+        <item>08:30:00</item>
+        <item>09:00:00</item>
+        <item>09:30:00</item>
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end0830">
+        <item>09:00:00</item>
+        <item>09:30:00</item>
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end0900">
+        <item>09:30:00</item>
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end0930">
+        <item>10:00:00</item>
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1000">
+        <item>10:30:00</item>
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1030">
+        <item>11:00:00</item>
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1100">
+        <item>11:30:00</item>
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1130">
+        <item>12:00:00</item>
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1200">
+        <item>12:30:00</item>
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1230">
+        <item>13:00:00</item>
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1300">
+        <item>13:30:00</item>
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1330">
+        <item>14:00:00</item>
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1400">
+        <item>14:30:00</item>
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1430">
+        <item>15:00:00</item>
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1500">
+        <item>15:30:00</item>
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1530">
+        <item>16:00:00</item>
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1600">
+        <item>16:30:00</item>
+        <item>17:00:00</item>
+    </string-array>
+    <string-array name="jam_end1630">
+        <item>17:00:00</item>
+    </string-array>
+
+    <!--    opsi end -->
+
     <string-array name="spinLec">
 
     </string-array>

@@ -64,20 +64,28 @@ public class StarterActivity extends AppCompatActivity {
 
     private void setupAddCourse(){
         addCourse.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StarterActivity.this, AddCourseActivity.class);
-                startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent,options.toBundle());
+                finish();
             }
         });
     }
 
     private void setupLogStudent(){
         logStudent.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StarterActivity.this, LogActivity.class);
-                startActivity(intent);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
+                startActivity(intent,options.toBundle());
+                finish();
             }
         });
     }

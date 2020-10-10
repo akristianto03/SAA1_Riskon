@@ -311,7 +311,7 @@ public class RegActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        intent = new Intent(RegActivity.this, MainActivity.class);
+        intent = new Intent(RegActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
         startActivity(intent, options.toBundle());

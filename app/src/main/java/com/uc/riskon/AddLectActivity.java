@@ -225,7 +225,7 @@ public class AddLectActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        intent = new Intent(AddLectActivity.this, MainActivity.class);
+        intent = new Intent(AddLectActivity.this, StarterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(AddLectActivity.this);
         startActivity(intent, options.toBundle());
