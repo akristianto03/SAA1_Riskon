@@ -69,6 +69,7 @@ public class StarterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StarterActivity.this, AddCourseActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("action","add");
 //                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(StarterActivity.this);
                 startActivity(intent);
                 finish();

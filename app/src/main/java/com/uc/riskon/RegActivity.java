@@ -260,10 +260,14 @@ public class RegActivity extends AppCompatActivity {
 //                                }
 //                            });
 
-                            Intent in = new Intent(RegActivity.this,StudentData.class);
-                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+                            Intent in;
+                            if (action.equals("editlogin")){
+                                in = new Intent(RegActivity.this, MainActivity.class);
+                            }else{
+                                in = new Intent(RegActivity.this,StudentData.class);
+                            }
 
+                            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             dialog.cancel();
                             Toast.makeText(RegActivity.this,"Edit Student Successfuly",Toast.LENGTH_SHORT).show();
                             startActivity(in);
@@ -277,7 +281,11 @@ public class RegActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.lecturer_menu, menu);
+        if(action.equals("editlogin")){
+
+        }else{
+            getMenuInflater().inflate(R.menu.lecturer_menu, menu);
+        }
         return true;
     }
 
@@ -301,9 +309,16 @@ public class RegActivity extends AppCompatActivity {
 //                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
                 startActivity(intent);
                 finish();
-            }else{
+            }else if (action.equals("edit")){
                 Intent intent;
                 intent = new Intent(RegActivity.this,StudentData.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+                startActivity(intent);
+                finish();
+            }else{
+                Intent intent;
+                intent = new Intent(RegActivity.this,MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
                 startActivity(intent);
@@ -323,11 +338,18 @@ public class RegActivity extends AppCompatActivity {
 //            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
             startActivity(intent);
             finish();
-        }else{
+        }else if (action.equals("edit")){
             Intent intent;
             intent = new Intent(RegActivity.this,StudentData.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent;
+            intent = new Intent(RegActivity.this,MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegActivity.this);
             startActivity(intent);
             finish();
         }

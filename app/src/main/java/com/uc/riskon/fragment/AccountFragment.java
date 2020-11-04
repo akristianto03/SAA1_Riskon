@@ -28,14 +28,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.uc.riskon.LoadingActivity;
 import com.uc.riskon.R;
+import com.uc.riskon.RegActivity;
 import com.uc.riskon.StarterActivity;
+import com.uc.riskon.model.Student;
 
 public class AccountFragment extends Fragment {
 
     TextView accName,accNim,accEmail,accGender,accAge,accAddress;
-    Button btnLogOut;
+    Button btnLogOut, btnEdit;
     FirebaseAuth fAuth;
     DatabaseReference fBase;
+    Student student;
 
     Dialog dialogLoading;
 
@@ -53,6 +56,7 @@ public class AccountFragment extends Fragment {
         accAge = view.findViewById(R.id.accAge);
         accAddress = view.findViewById(R.id.accAddress);
         btnLogOut = view.findViewById(R.id.btnLogOut);
+        btnEdit = view.findViewById(R.id.btnEditFragAcc);
 
         dialogLoading = LoadingActivity.loadingDialog(getActivity());
 
@@ -61,6 +65,7 @@ public class AccountFragment extends Fragment {
 
         setupAcc();
         setupBtnLogOut();
+        setupBtnEdit();
 
         return view;
     }
@@ -71,20 +76,14 @@ public class AccountFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    String name,nim,email,gender,age,address;
-                    name = (String) dataSnapshot.child("fname").getValue();
-                    nim = (String) dataSnapshot.child("nim").getValue();
-                    email = (String) dataSnapshot.child("email").getValue();
-                    gender = (String) dataSnapshot.child("gender").getValue();
-                    age = (String) dataSnapshot.child("age").getValue() + " years old";
-                    address = (String) dataSnapshot.child("address").getValue();
+                    student = dataSnapshot.getValue(Student.class);
 
-                    accName.setText(name);
-                    accNim.setText(nim);
-                    accEmail.setText(email);
-                    accGender.setText(gender);
-                    accAge.setText(age);
-                    accAddress.setText(address);
+                    accName.setText(student.getFname());
+                    accNim.setText(student.getNim());
+                    accEmail.setText(student.getEmail());
+                    accGender.setText(student.getGender());
+                    accAge.setText(student.getAge());
+                    accAddress.setText(student.getAddress());
 
                 }else{
                     Toast.makeText(getActivity(), "document doesn't exist", Toast.LENGTH_SHORT).show();
@@ -132,6 +131,20 @@ public class AccountFragment extends Fragment {
                         .setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
 
+            }
+        });
+    }
+
+    private void setupBtnEdit() {
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), RegActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("action", "editlogin");
+                intent.putExtra("editDataStudent", student);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
     }

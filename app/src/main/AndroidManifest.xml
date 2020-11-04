@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".fragment.AccountFragment"></activity>
+        <activity android:name=".adapter.ScheduleFragmentAdapter"></activity>
+        <activity android:name=".adapter.CourseFragmentAdapter" />
+        <activity android:name=".adapter.CourseAdapter" />
+        <activity android:name=".CourseData" />
+        <activity android:name=".fragment.AccountFragment" />
         <activity android:name=".fragment.ScheduleFragment" />
         <activity android:name=".fragment.CoursesFragment" />
         <activity android:name=".adapter.StudentAdapter" />
